@@ -1,0 +1,37 @@
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+WORKDIR /src
+
+# Копіюємо файли рішення та відновлюємо залежності
+COPY ["StaffSystem.Web/StaffSystem.Web.csproj", "StaffSystem.Web/"]
+COPY ["StaffSystem.Infrastructure/StaffSystem.Infrastructure.csproj", "StaffSystem.Infrastructure/"]
+COPY ["StaffSystem.Application/StaffSystem.Application.csproj", "StaffSystem.Application/"]
+RUN dotnet restore "StaffSystem.Web/StaffSystem.Web.csproj"
+
+# Копіюємо всі інші файли рішення
+COPY . .
+WORKDIR /src/StaffSystem.Web
+
+# Встановлюємо змінну середовища для EF Core CLI
+ENV ASPNETCORE_ENVIRONMENT=Development
+
+# Надаємо дозвіл на виконання скрипту
+RUN chmod +x ../StaffSystem.Web/entrypoint.sh
+
+# Публікуємо додаток
+RUN dotnet publish "StaffSystem.Web.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+# --- Фінальний образ ---
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
+WORKDIR /Application
+
+# Копіюємо скрипт entrypoint
+COPY --from=build /src/StaffSystem.Web/entrypoint.sh .
+
+# Копіюємо опубліковані файли
+COPY --from=build /app/publish .
+
+# Примусово встановлюємо режим Development у фінальному образі
+ENV ASPNETCORE_ENVIRONMENT=Development
+
+# Запускаємо скрипт entrypoint, який виконає міграції та запустить додаток
+ENTRYPOINT ["./entrypoint.sh"]

@@ -1,0 +1,55 @@
+@model StaffSystem.Infrastructure.Dto.EmployeeDto
+
+@{
+    ViewData["Title"] = "Кабінет працівника: " + Model.LastName + " " + Model.FirstName + " " + Model.MiddleName;
+}
+
+<h1> Кабінет працівника: @Model.LastName @Model.FirstName @Model.MiddleName </h1>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Основна інформація</h5>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">ПІБ</dt>
+            <dd class="col-sm-9">@Model.LastName @Model.FirstName @Model.MiddleName</dd>
+
+            <dt class="col-sm-3">Відділ</dt>
+            <dd class="col-sm-9">@Model.DepartmentName</dd>
+
+            <dt class="col-sm-3">Посада</dt>
+            <dd class="col-sm-9">@Model.PositionName</dd>
+            
+            <dt class="col-sm-3">Зарплата</dt>
+            <dd class="col-sm-9">@Model.Salary.ToString("C2")</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-secondary text-white">
+        <h5 class="mb-0">Контактна та кадрова інформація</h5>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">День народження</dt>
+            <dd class="col-sm-9">@(Model.BirthDate.HasValue ? Model.BirthDate.Value.ToShortDateString() : "Не вказано")</dd>
+
+            <dt class="col-sm-3">Дата найму</dt>
+            <dd class="col-sm-9">@(Model.HireDate.HasValue ? Model.HireDate.Value.ToShortDateString() : "Не вказано")</dd>
+
+            <dt class="col-sm-3">Телефон</dt>
+            <dd class="col-sm-9">@Model.Phone</dd>
+            
+            <dt class="col-sm-3">Адреса</dt>
+            <dd class="col-sm-9">@Model.Address</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-action="Edit" asp-route-id="@Model.EmployeeId" class="btn btn-warning me-3">Редагувати дані</a>
+    
+    <a asp-action="Index" class="btn btn-secondary">Повернутися до списку</a>
+</div>

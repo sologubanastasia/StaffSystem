@@ -1,0 +1,90 @@
+@model IEnumerable<StaffSystem.Infrastructure.Dto.EmployeeDto>
+
+@{
+ViewData["Title"] = "Звіт заробітньої плати";
+decimal totalSalary = Model?.Sum(e => e.Salary) ?? 0;
+}
+
+<h1>Звіт заробітньої плати</h1>
+
+<form asp-controller="Report" asp-action="SalaryReport" method="get" class="mb-4 p-3 border rounded">
+<h4>Фільтри для звіту</h4>
+<div class="row">
+
+    <div class="col-md-4">
+        <label for="filterType">Тип фільтру:</label>
+        <select name="filterType" class="form-select">
+            @{
+                var currentFilter = ViewBag.CurrentFilterType as string;
+            }
+            
+            <option value="" @(string.IsNullOrEmpty(currentFilter) ? "selected" : "")>Всі працівники (Оберіть тип фільтру)</option>
+            
+            <option value="Department" @(currentFilter == "Department" ? "selected" : "")>Відділ</option>
+            
+            <option value="Position" @(currentFilter == "Position" ? "selected" : "")>Посада</option>
+            
+            <option value="Name" @(currentFilter == "Name" ? "selected" : "")>ПІБ (Прізвище, Ім'я, По батькові)</option>
+            
+        </select>
+    </div>
+    
+    <div class="col-md-4">
+        <label for="filterValue">Значення фільтру:</label>
+        <input type="text" name="filterValue" class="form-control" value="@ViewBag.CurrentFilterValue" placeholder="Введіть значення..." />
+    </div>
+    
+    <div class="col-md-4 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary me-2">Сформувати звіт</button>
+        <a asp-controller="Report" asp-action="SalaryReport" class="btn btn-secondary">Скинути</a>
+    </div>
+</div>
+
+
+</form>
+
+@if (Model != null && Model.Any())
+{
+<div class="alert alert-info">
+Загальна сума окладів за поточним фільтром:
+<strong>@totalSalary.ToString("C2")</strong>
+</div>
+
+<a asp-action="Export" 
+   asp-controller="Employee" 
+   asp-route-filterType="@ViewBag.CurrentFilterType" 
+   asp-route-filterValue="@ViewBag.CurrentFilterValue" 
+   class="btn btn-primary mb-3">
+    3.1 Вивантажити в TXT
+</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ПІБ</th>
+            <th>Відділ</th>
+            <th>Посада</th>
+            <th>Оклад</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.LastName @item.FirstName @item.MiddleName</td> 
+                <td>@item.DepartmentName</td>
+                <td>@item.PositionName</td>
+                <td>@item.Salary.ToString("C2")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+}
+else if (ViewBag.SearchAttempted == true)
+{
+<div class="alert alert-warning">
+Дані по заданим критеріям не знайдено
+</div>
+}

@@ -1,0 +1,17 @@
+D:\ukrpost\StaffInfoSystem\StaffSystem.Application\bin\Debug\net9.0\StaffSystem.Application.deps.json
+D:\ukrpost\StaffInfoSystem\StaffSystem.Application\bin\Debug\net9.0\StaffSystem.Application.dll
+D:\ukrpost\StaffInfoSystem\StaffSystem.Application\bin\Debug\net9.0\StaffSystem.Application.pdb
+D:\ukrpost\StaffInfoSystem\StaffSystem.Application\bin\Debug\net9.0\StaffSystem.Domain.dll
+D:\ukrpost\StaffInfoSystem\StaffSystem.Application\bin\Debug\net9.0\StaffSystem.Infrastructure.dll
+D:\ukrpost\StaffInfoSystem\StaffSystem.Application\bin\Debug\net9.0\StaffSystem.Domain.pdb
+D:\ukrpost\StaffInfoSystem\StaffSystem.Application\bin\Debug\net9.0\StaffSystem.Infrastructure.pdb
+D:\ukrpost\StaffInfoSystem\StaffSystem.Application\obj\Debug\net9.0\StaffSystem.Application.csproj.AssemblyReference.cache
+D:\ukrpost\StaffInfoSystem\StaffSystem.Application\obj\Debug\net9.0\StaffSystem.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\ukrpost\StaffInfoSystem\StaffSystem.Application\obj\Debug\net9.0\StaffSystem.Application.AssemblyInfoInputs.cache
+D:\ukrpost\StaffInfoSystem\StaffSystem.Application\obj\Debug\net9.0\StaffSystem.Application.AssemblyInfo.cs
+D:\ukrpost\StaffInfoSystem\StaffSystem.Application\obj\Debug\net9.0\StaffSystem.Application.csproj.CoreCompileInputs.cache
+D:\ukrpost\StaffInfoSystem\StaffSystem.Application\obj\Debug\net9.0\StaffSys.1BFC44C1.Up2Date
+D:\ukrpost\StaffInfoSystem\StaffSystem.Application\obj\Debug\net9.0\StaffSystem.Application.dll
+D:\ukrpost\StaffInfoSystem\StaffSystem.Application\obj\Debug\net9.0\refint\StaffSystem.Application.dll
+D:\ukrpost\StaffInfoSystem\StaffSystem.Application\obj\Debug\net9.0\StaffSystem.Application.pdb
+D:\ukrpost\StaffInfoSystem\StaffSystem.Application\obj\Debug\net9.0\ref\StaffSystem.Application.dll

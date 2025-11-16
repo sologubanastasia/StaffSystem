@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine 
+    container_name: staff_postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: StaffSystem
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck: # Перевірка, чи база даних дійсно готова
+      test: ["CMD-SHELL", "pg_isready -U postgres -d StaffSystem"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build:
+      context: . # Використовуємо . (поточну директорію StaffSystem.Web)
+      dockerfile: Dockerfile
+    container_name: staff_web_app
+    restart: always
+    ports:
+      - "8080:8080" # Змінено порт контейнера з 80 на 8080 (за замовчуванням у .NET Core 8)
+    environment:
+      # Важливо: використовуємо 'db', а не 'localhost', для внутрішньої мережі Docker
+      ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=StaffSystem;Username=postgres;Password=password;
+    depends_on:
+      db:
+        condition: service_healthy # web не запуститься, доки db не буде здоровий
+
+volumes:
+  postgres_data:

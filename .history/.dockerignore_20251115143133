@@ -1,0 +1,14 @@
+**/.nuget
+**/NuGet/
+**/nuget.config
+**/NuGet.Config
+
+**/bin
+**/obj
+**/debug
+**/release
+**/publish
+**/Dockerfile*
+**/docker-compose*
+Дії після створення файлу 
+Збережіть файл .doc

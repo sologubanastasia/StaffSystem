@@ -1,0 +1,12 @@
+**/.nuget
+**/NuGet/
+**/nuget.config
+**/NuGet.Config
+
+**/bin
+**/obj
+**/debug
+**/release
+**/publish
+**/Dockerfile*
+**/docker-compose*

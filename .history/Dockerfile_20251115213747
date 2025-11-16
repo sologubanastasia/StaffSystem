@@ -1,0 +1,28 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build 
+WORKDIR /src
+
+# Копіювання файлів рішень та проєктів
+COPY *.sln .
+
+COPY StaffSystem.Infrastructure/*.csproj ./StaffSystem.Infrastructure/
+COPY StaffSystem.Domain/*.csproj ./StaffSystem.Domain/
+COPY StaffSystem.Application/*.csproj ./StaffSystem.Application/ 
+COPY StaffSystem.Web/*.csproj ./StaffSystem.Web/
+
+# Відновлення залежностей
+RUN dotnet nuget locals all --clear
+RUN dotnet restore StaffSystem.Web/StaffSystem.Web.csproj
+
+# Копіювання всього коду
+COPY . .
+
+# Публікація
+WORKDIR /src/StaffSystem.Web
+RUN dotnet publish "StaffSystem.Web.csproj" -c Release -o /app/publish /p:DisableImplicitNuGetFallbackFolder=true --no-restore
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final 
+WORKDIR /app
+COPY --from=build /app/publish .
+
+# Встановлюємо ENTRYPOINT для запуску додатку
+ENTRYPOINT ["dotnet", "StaffSystem.Web.dll"]

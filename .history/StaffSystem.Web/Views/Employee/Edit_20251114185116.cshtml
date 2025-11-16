@@ -1,0 +1,63 @@
+@model StaffSystem.Infrastructure.DTO.EmployeeDto
+
+@{
+    ViewData["Title"] = "Редагувати працівника";
+}
+
+<h1>Редагувати Дані Працівника</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="EmployeeId" />
+    <input type="hidden" asp-for="CompanyId" />
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label asp-for="LastName" class="form-label"></label>
+            <input asp-for="LastName" class="form-control" />
+        </div>
+        <div class="col-md-4 mb-3">
+            <label asp-for="FirstName" class="form-label"></label>
+            <input asp-for="FirstName" class="form-control" />
+        </div>
+        <div class="col-md-4 mb-3">
+            <label asp-for="MiddleName" class="form-label"></label>
+            <input asp-for="MiddleName" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label for="DepartmentId" class="form-label">Відділ ID</label>
+            <input asp-for="DepartmentId" class="form-control" />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="PositionId" class="form-label">Посада ID</label>
+            <input asp-for="PositionId" class="form-control" />
+        </div>
+        
+        <div class="col-md-4 mb-3">
+            <label asp-for="Salary" class="form-label"></label>
+            <input asp-for="Salary" class="form-control" />
+        </div>
+        <div class="col-md-4 mb-3">
+            <label asp-for="BirthDate" class="form-label"></label>
+            <input asp-for="BirthDate" type="date" class="form-control" />
+        </div>
+        <div class="col-md-4 mb-3">
+            <label asp-for="HireDate" class="form-label"></label>
+            <input asp-for="HireDate" type="date" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="Phone" class="form-label"></label>
+            <input asp-for="Phone" class="form-control" />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="Address" class="form-label"></label>
+            <input asp-for="Address" class="form-control" />
+        </div>
+    </div>
+    
+    <div class="mt-4">
+        <button type="submit" class="btn btn-primary">Зберегти Зміни</button>
+        <a asp-action="Index" class="btn btn-secondary">Скасувати</a>
+    </div>
+</form>

@@ -1,0 +1,61 @@
+@model IEnumerable<StaffSystem.Infrastructure.Dto.EmployeeDto>
+
+@{
+    ViewData["Title"] = "Зарплатний Звіт";
+    decimal totalSalary = Model?.Sum(e => e.Salary) ?? 0;
+}
+
+<h1>Зарплатна Звітність</h1>
+
+<form asp-controller="Report" asp-action="SalaryReport" method="get" class="mb-4 p-3 border rounded">
+    <h4>Фільтри для Звіту</h4>
+    <div class="row">
+        <div class="col-md-4">
+            <label for="department">Фільтр по Відділу:</label>
+            <input type="text" name="department" class="form-control" value="@ViewBag.CurrentDepartment" />
+        </div>
+        <div class="col-md-4 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary me-2">Сформувати Звіт</button>
+        </div>
+    </div>
+</form>
+
+@if (Model != null && Model.Any())
+{
+    <div class="alert alert-info">
+        Загальна сума окладів за поточним фільтром: 
+        <strong>@totalSalary.ToString("C2")</strong>
+    </div>
+    
+    <a asp-action="Export" asp-controller="Employee" asp-route-department="@ViewBag.CurrentDepartment" class="btn btn-primary mb-3">
+        3.1 Вивантажити в TXT
+    </a>
+    
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ПІБ</th>
+                <th>Відділ</th>
+                <th>Посада</th>
+                <th>Оклад</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.LastName @item.FirstName</td>
+                    <td>@item.DepartmentName</td>
+                    <td>@item.PositionName</td>
+                    <td>@item.Salary.ToString("C2")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else if (ViewBag.SearchAttempted == true)
+{
+    <div class="alert alert-warning">
+        Дані по заданим критеріям не знайдено.
+    </div>
+}

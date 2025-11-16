@@ -1,0 +1,56 @@
+@model StaffSystem.Infrastructure.Dto.EmployeeDto
+
+@{
+    ViewData["Title"] = "Кабінет працівника: " + Model.LastName + " " + Model.FirstName + " " + Model.MiddleName;
+}
+
+<h1 class="mb-4"> Кабінет працівника: @Model.LastName @Model.FirstName @Model.MiddleName </h1>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-header" style="background-color: var(--color-secondary); color: var(--color-primary); border-bottom: 2px solid var(--color-primary); padding: 1rem;">
+        <h5 class="mb-0" style="color: var(--color-primary);">Основна інформація</h5>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-4" style="color: var(--color-primary); font-weight: 600;">ПІБ</dt>
+            <dd class="col-sm-8"><strong>@Model.LastName @Model.FirstName @Model.MiddleName</strong></dd>
+
+            <dt class="col-sm-4" style="color: var(--color-primary); font-weight: 600;">Відділ</dt>
+            <dd class="col-sm-8">@Model.DepartmentName</dd>
+
+            <dt class="col-sm-4" style="color: var(--color-primary); font-weight: 600;">Посада</dt>
+            <dd class="col-sm-8">@Model.PositionName</dd>
+            
+            <dt class="col-sm-4" style="color: var(--color-primary); font-weight: 600;">Зарплата</dt>
+
+            <dd class="col-sm-8" style="color: var(--color-primary); font-weight: bold;">@Model.Salary.ToString("C2")</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-header" style="background-color: var(--color-secondary); color: var(--color-primary); border-bottom: 2px solid var(--color-primary); padding: 1rem;">
+        <h5 class="mb-0" style="color: var(--color-primary);">Контактна та кадрова інформація</h5>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-4" style="color: var(--color-primary); font-weight: 600;">День народження</dt>
+            <dd class="col-sm-8">@(Model.BirthDate == default(DateTime) ? "Не вказано" : Model.BirthDate.ToShortDateString())</dd>
+
+            <dt class="col-sm-4" style="color: var(--color-primary); font-weight: 600;">Дата найму</dt>
+            <dd class="col-sm-8">@(Model.HireDate == default(DateTime) ? "Не вказано" : Model.HireDate.ToShortDateString())</dd>
+
+            <dt class="col-sm-4" style="color: var(--color-primary); font-weight: 600;">Телефон</dt>
+            <dd class="col-sm-8">@Model.Phone</dd>
+            
+            <dt class="col-sm-4" style="color: var(--color-primary); font-weight: 600;">Адреса</dt>
+            <dd class="col-sm-8">@Model.Address</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-action="Edit" asp-route-id="@Model.EmployeeId" class="btn btn-primary me-3">Редагувати дані</a>
+    
+    <a asp-action="Index" class="btn">Повернутися до списку</a>
+</div>

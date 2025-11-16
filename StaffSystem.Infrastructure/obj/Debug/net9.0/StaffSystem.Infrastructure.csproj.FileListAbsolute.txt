@@ -1,0 +1,15 @@
+D:\ukrpost\StaffInfoSystem\StaffSystem.Infrastructure\bin\Debug\net9.0\StaffSystem.Infrastructure.deps.json
+D:\ukrpost\StaffInfoSystem\StaffSystem.Infrastructure\bin\Debug\net9.0\StaffSystem.Infrastructure.dll
+D:\ukrpost\StaffInfoSystem\StaffSystem.Infrastructure\bin\Debug\net9.0\StaffSystem.Infrastructure.pdb
+D:\ukrpost\StaffInfoSystem\StaffSystem.Infrastructure\bin\Debug\net9.0\StaffSystem.Domain.dll
+D:\ukrpost\StaffInfoSystem\StaffSystem.Infrastructure\bin\Debug\net9.0\StaffSystem.Domain.pdb
+D:\ukrpost\StaffInfoSystem\StaffSystem.Infrastructure\obj\Debug\net9.0\StaffSystem.Infrastructure.csproj.AssemblyReference.cache
+D:\ukrpost\StaffInfoSystem\StaffSystem.Infrastructure\obj\Debug\net9.0\StaffSystem.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\ukrpost\StaffInfoSystem\StaffSystem.Infrastructure\obj\Debug\net9.0\StaffSystem.Infrastructure.AssemblyInfoInputs.cache
+D:\ukrpost\StaffInfoSystem\StaffSystem.Infrastructure\obj\Debug\net9.0\StaffSystem.Infrastructure.AssemblyInfo.cs
+D:\ukrpost\StaffInfoSystem\StaffSystem.Infrastructure\obj\Debug\net9.0\StaffSystem.Infrastructure.csproj.CoreCompileInputs.cache
+D:\ukrpost\StaffInfoSystem\StaffSystem.Infrastructure\obj\Debug\net9.0\StaffSys.1AAA4DEA.Up2Date
+D:\ukrpost\StaffInfoSystem\StaffSystem.Infrastructure\obj\Debug\net9.0\StaffSystem.Infrastructure.dll
+D:\ukrpost\StaffInfoSystem\StaffSystem.Infrastructure\obj\Debug\net9.0\refint\StaffSystem.Infrastructure.dll
+D:\ukrpost\StaffInfoSystem\StaffSystem.Infrastructure\obj\Debug\net9.0\StaffSystem.Infrastructure.pdb
+D:\ukrpost\StaffInfoSystem\StaffSystem.Infrastructure\obj\Debug\net9.0\ref\StaffSystem.Infrastructure.dll

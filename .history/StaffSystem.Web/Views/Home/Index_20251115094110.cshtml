@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Головна";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Облік персоналу</h1>
+    <p>Ласкаво просимо до системи обліку даних працівників!</p>
+</div>
+
+<hr />
+
+<h2>Інформація про компанію</h2>
+<div class="card p-3">
+    <h4>Назва: IT Expert </h4>
+    <p>Адреса: м.Київ, вулиця Кирилівська, будинок 4</p>
+    <p>Телефон: + 380 069 5696</p>
+</div>
+
+<div class="mt-4">
+    <a asp-controller="Employee" asp-action="Index" class="btn btn-primary btn-lg">Перегляд Персоналу</a>
+    <a asp-controller="Report" asp-action="SalaryReport" class="btn btn-primary btn-lg">Зарплатна Звітність</a>
+</div>

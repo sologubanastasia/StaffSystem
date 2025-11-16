@@ -1,0 +1,31 @@
+FROM mcr.microsoft.com/dotnet/sdk:9.0-preview AS build 
+WORKDIR /src
+
+COPY *.sln .
+
+COPY StaffSystem.Infrastructure/*.csproj ./StaffSystem.Infrastructure/
+COPY StaffSystem.Domain/*.csproj ./StaffSystem.Domain/
+COPY StaffSystem.Application/*.csproj ./StaffSystem.Application/ 
+COPY StaffSystem.Web/*.csproj ./StaffSystem.Web/
+
+RUN dotnet nuget locals all --clear
+
+RUN dotnet restore StaffSystem.Web/StaffSystem.Web.csproj
+
+COPY . .
+WORKDIR /src/StaffSystem.Web
+
+ENV ASPNETCORE_ENVIRONMENT=Development
+
+RUN chmod +x ../StaffSystem.Web/entrypoint.sh
+
+RUN dotnet publish "StaffSystem.Web.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-preview AS final 
+WORKDIR /Application
+COPY --from=build /src/StaffSystem.Web/entrypoint.sh .
+
+COPY --from=build /app/publish .
+ENV ASPNETCORE_ENVIRONMENT=Development
+
+ENTRYPOINT ["./entrypoint.sh"]
